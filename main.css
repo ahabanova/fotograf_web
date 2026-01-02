@@ -1,3 +1,179 @@
+/* ===================================
+   CSS Variables & Base Styles
+   =================================== */
+:root {
+    --primary-color: #0f4b80;
+    --accent-color: #e67e22;
+    --text-dark: #1a1a1a;
+    --text-light: #666;
+    --bg-light: #ffffff;
+    --bg-subtle: #f8f9fa;
+    --border-color: #e0e0e0;
+
+    --font-heading: "Cormorant Garamond", serif;
+    --font-body: "Montserrat", sans-serif;
+
+    --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+
+    --max-width: 1400px;
+    --header-height: 100px;
+
+    --radius-sm: 8px;
+    --radius-md: 12px;
+    --radius-lg: 16px;
+    --radius-full: 50px;
+
+    --shadow-sm: 0 5px 20px rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 10px 40px rgba(0, 0, 0, 0.08);
+    --shadow-lg: 0 20px 60px rgba(0, 0, 0, 0.12);
+    --shadow-xl: 0 25px 70px rgba(0, 0, 0, 0.25);
+
+    --section-padding: 6rem 2rem;
+    --card-padding: 2.5rem;
+    --container-padding: 2rem;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-body);
+    color: var(--text-dark);
+    line-height: 1.6;
+    background: var(--bg-light);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: var(--font-heading);
+    font-weight: 600;
+    line-height: 1.2;
+}
+
+h2 {
+    font-size: 3.5rem;
+}
+
+/* ===================================
+   Header Styles
+   =================================== */
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(10px);
+    z-index: 1000;
+    transition: var(--transition);
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.05);
+}
+
+.header.scrolled {
+    box-shadow: 0 2px 30px rgba(0, 0, 0, 0.1);
+}
+
+.nav-container {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 1.2rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.logo {
+    width: 60px;
+    height: 60px;
+    transition: var(--transition);
+}
+
+.logo:hover {
+    transform: scale(1.05);
+}
+
+.brand-text h1 {
+    font-size: 1.8rem;
+    color: var(--text-dark);
+    margin: 0;
+}
+
+.brand-text p {
+    font-size: 0.9rem;
+    color: var(--text-light);
+    margin: 0;
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 2.5rem;
+    align-items: center;
+}
+
+.nav-links a {
+    color: var(--text-dark);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.95rem;
+    letter-spacing: 0.5px;
+    transition: var(--transition);
+    position: relative;
+}
+
+.nav-links a::after {
+    content: "";
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--accent-color);
+    transition: var(--transition);
+}
+
+.nav-links a:hover::after {
+    width: 100%;
+}
+
+.nav-links a:hover {
+    color: var(--accent-color);
+}
+
+.mobile-menu-btn {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
+}
+
+.mobile-menu-btn span {
+    display: block;
+    width: 28px;
+    height: 3px;
+    background: var(--text-dark);
+    margin: 5px 0;
+    transition: var(--transition);
+    border-radius: 3px;
+}
+
+/* ===================================
+   Main Content Styles
+   =================================== */
 .hero-container {
     background: #b1b1b0 url(images/hero-background.jpg) no-repeat center;
     background-size: cover;
@@ -273,6 +449,142 @@
     margin-bottom: 1rem;
 }
 
+/* ===================================
+   Contact Styles
+   =================================== */
+.contact-content {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.contact-info {
+    margin: 0 auto;
+    max-width: 800px;
+    text-align: center;
+}
+
+.contact-item {
+    background: var(--bg-light);
+    padding: 3rem;
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-sm);
+    transition: var(--transition);
+}
+
+.contact-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.contact-item h3 {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+    color: var(--text-dark);
+}
+
+.contact-item a {
+    color: var(--accent-color);
+    text-decoration: none;
+    font-weight: 500;
+    transition: var(--transition);
+}
+
+.contact-item a:hover {
+    color: var(--primary-color);
+}
+
+.social-links {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.social-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 60px;
+    height: 60px;
+    background: var(--bg-light);
+    border-radius: 50%;
+    transition: var(--transition);
+    box-shadow: var(--shadow-sm);
+}
+
+.social-link:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    background: var(--accent-color);
+}
+
+.social-link svg {
+    width: 28px;
+    height: 28px;
+    fill: var(--primary-color);
+    transition: var(--transition);
+}
+
+.social-link:hover svg {
+    fill: white;
+}
+
+/* ===================================
+   Scroll to Top Button
+   =================================== */
+.scroll-top {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    width: 50px;
+    height: 50px;
+    background: var(--accent-color);
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: var(--transition);
+    box-shadow: 0 5px 20px rgba(230, 126, 34, 0.3);
+    z-index: 999;
+}
+
+.scroll-top.visible {
+    opacity: 1;
+    visibility: visible;
+}
+
+.scroll-top:hover {
+    background: var(--primary-color);
+    transform: translateY(-5px);
+    box-shadow: 0 4px 20px rgba(15, 75, 128, 0.3);
+}
+
+.scroll-top svg {
+    width: 24px;
+    height: 24px;
+    fill: white;
+}
+
+/* ===================================
+   Footer Styles
+   =================================== */
+.footer {
+    color: var(--text-light);
+    padding: 2rem;
+    text-align: center;
+}
+
+.footer p {
+    font-size: 0.95rem;
+}
+
+/* ===================================
+   Animations
+   =================================== */
 @keyframes fadeInUp {
     from {
         opacity: 0;
@@ -284,7 +596,50 @@
     }
 }
 
+/* ===================================
+   Responsive Design
+   =================================== */
 @media (max-width: 968px) {
+    h2 {
+        font-size: 2.5rem;
+    }
+
+    .nav-links {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        min-width: 150px;
+        width: 30%;
+        height: 100vh;
+        background: var(--bg-light);
+        flex-direction: column;
+        justify-content: center;
+        gap: 2rem;
+        transition: var(--transition);
+        box-shadow: -5px 0 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .nav-links.active {
+        right: 0;
+    }
+
+    .mobile-menu-btn {
+        display: block;
+        z-index: 1001;
+    }
+
+    .mobile-menu-btn.active span:nth-child(1) {
+        transform: translateY(8px) rotate(45deg);
+    }
+
+    .mobile-menu-btn.active span:nth-child(2) {
+        opacity: 0;
+    }
+
+    .mobile-menu-btn.active span:nth-child(3) {
+        transform: translateY(-8px) rotate(-45deg);
+    }
+
     .hero h2 {
         font-size: 3rem;
     }
@@ -305,8 +660,29 @@
 }
 
 @media (max-width: 640px) {
+    h2 {
+        font-size: 2rem;
+    }
+
     body {
         overflow-x: hidden;
+    }
+
+    .nav-container {
+        padding: 1rem;
+    }
+
+    .logo {
+        width: 50px;
+        height: 50px;
+    }
+
+    .brand-text h1 {
+        font-size: 1.4rem;
+    }
+
+    .brand-text p {
+        font-size: 0.8rem;
     }
 
     .hero-content {
