@@ -66,24 +66,32 @@ if (scrollTopBtn) {
     });
 }
 
-// Smooth scroll for anchor links - optimalizovaný
+// Smooth scroll for anchor links - OPTIMALIZOVÁNO bez getBoundingClientRect
 document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
     anchor.addEventListener("click", function (e) {
         e.preventDefault();
-        const target = document.querySelector(this.getAttribute("href"));
-        if (target) {
-            // Použití requestAnimationFrame pro čtení layoutu
-            requestAnimationFrame(() => {
-                const headerOffset = 100;
-                const elementPosition = target.getBoundingClientRect().top;
-                const offsetPosition =
-                    elementPosition + window.pageYOffset - headerOffset;
+        const targetId = this.getAttribute("href");
 
-                window.scrollTo({
-                    top: offsetPosition,
-                    behavior: "smooth",
-                });
+        if (targetId === "#") return;
+
+        const target = document.querySelector(targetId);
+        if (target) {
+            // Použití scrollIntoView místo getBoundingClientRect - žádný reflow!
+            target.scrollIntoView({
+                behavior: "smooth",
+                block: "start",
             });
+
+            // Offset pro fixed header - wait pro smooth scroll
+            setTimeout(() => {
+                const scrolledY = window.scrollY;
+                if (scrolledY > 0) {
+                    window.scrollTo({
+                        top: scrolledY - 100,
+                        behavior: "auto", // instant, už jsme blízko
+                    });
+                }
+            }, 100);
         }
     });
 });
