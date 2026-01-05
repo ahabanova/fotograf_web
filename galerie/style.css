@@ -334,3 +334,15 @@
         height: 40px;
     }
 }
+
+/* Fade-in animace pro Intersection Observer */
+.fade-in {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+}

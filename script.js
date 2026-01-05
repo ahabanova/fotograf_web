@@ -2,46 +2,69 @@
 const mobileMenuBtn = document.querySelector(".mobile-menu-btn");
 const navLinks = document.querySelector(".nav-links");
 
-mobileMenuBtn.addEventListener("click", () => {
-    mobileMenuBtn.classList.toggle("active");
-    navLinks.classList.toggle("active");
-});
-
-// Close mobile menu when clicking on a link
-document.querySelectorAll(".nav-links a").forEach((link) => {
-    link.addEventListener("click", () => {
-        mobileMenuBtn.classList.remove("active");
-        navLinks.classList.remove("active");
+if (mobileMenuBtn && navLinks) {
+    mobileMenuBtn.addEventListener("click", () => {
+        mobileMenuBtn.classList.toggle("active");
+        navLinks.classList.toggle("active");
     });
-});
 
-// Header scroll effect
+    // Close mobile menu when clicking on a link
+    document.querySelectorAll(".nav-links a").forEach((link) => {
+        link.addEventListener("click", () => {
+            mobileMenuBtn.classList.remove("active");
+            navLinks.classList.remove("active");
+        });
+    });
+}
+
+// Header scroll effect - použití requestAnimationFrame pro lepší výkon
 const header = document.querySelector(".header");
-window.addEventListener("scroll", () => {
+let ticking = false;
+
+function updateHeader() {
     if (window.scrollY > 100) {
         header.classList.add("scrolled");
     } else {
         header.classList.remove("scrolled");
     }
-});
-
-// Scroll to Top Button
-const scrollTopBtn = document.querySelector(".scroll-top");
+    ticking = false;
+}
 
 window.addEventListener("scroll", () => {
+    if (!ticking) {
+        window.requestAnimationFrame(updateHeader);
+        ticking = true;
+    }
+});
+
+// Scroll to Top Button - optimalizace
+const scrollTopBtn = document.querySelector(".scroll-top");
+let scrollTicking = false;
+
+function updateScrollButton() {
     if (window.scrollY > 500) {
         scrollTopBtn.classList.add("visible");
     } else {
         scrollTopBtn.classList.remove("visible");
     }
+    scrollTicking = false;
+}
+
+window.addEventListener("scroll", () => {
+    if (!scrollTicking) {
+        window.requestAnimationFrame(updateScrollButton);
+        scrollTicking = true;
+    }
 });
 
-scrollTopBtn.addEventListener("click", () => {
-    window.scrollTo({
-        top: 0,
-        behavior: "smooth",
+if (scrollTopBtn) {
+    scrollTopBtn.addEventListener("click", () => {
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth",
+        });
     });
-});
+}
 
 // Smooth scroll for anchor links
 document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
@@ -62,35 +85,5 @@ document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
     });
 });
 
-// Intersection Observer for fade-in animations
-const observerOptions = {
-    threshold: 0.1,
-    rootMargin: "0px 0px -100px 0px",
-};
-
-const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-            entry.target.style.opacity = "1";
-            entry.target.style.transform = "translateY(0)";
-        }
-    });
-}, observerOptions);
-
-// Apply fade-in to sections
-document.querySelectorAll(".section").forEach((section) => {
-    section.style.opacity = "0";
-    section.style.transform = "translateY(30px)";
-    section.style.transition = "opacity 0.8s ease-out, transform 0.8s ease-out";
-    observer.observe(section);
-});
-
-// Apply fade-in to gallery items
-document.querySelectorAll(".gallery-category").forEach((item, index) => {
-    item.style.opacity = "0";
-    item.style.transform = "translateY(30px)";
-    item.style.transition = `opacity 0.8s ease-out ${
-        index * 0.1
-    }s, transform 0.8s ease-out ${index * 0.1}s`;
-    observer.observe(item);
-});
+// Poznámka: Intersection Observer pro animace je v inline skriptu v HTML
+// pro okamžité spuštění bez čekání na defer

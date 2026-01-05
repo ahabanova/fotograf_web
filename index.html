@@ -5,23 +5,342 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta
             name="description"
-            content="Marek Hádal &ndash; fotograf. Specializace na svatby, portréty, děti a společenské události ve Zlínském kraji."
+            content="Marek Hádal – fotograf. Specializace na svatby, portréty, děti a společenské události ve Zlínském kraji."
         />
         <meta
             name="keywords"
             content="fotograf, svatební fotografie, portréty, dětské fotografie, Zlínský kraj, Halenkovice"
         />
-        <title>Marek Hádal &ndash; Fotograf | MH Photography</title>
+        <title>Marek Hádal – Fotograf | MH Photography</title>
         <link rel="icon" href="images/favicon.ico" />
 
+        <!-- CRITICAL CSS - inline pro okamžité vykreslení -->
+        <style>
+            /* CSS Variables */
+            :root {
+                --primary-color: #0f4b80;
+                --accent-color: #e67e22;
+                --text-dark: #1a1a1a;
+                --text-light: #666;
+                --bg-light: #ffffff;
+                --bg-subtle: #f8f9fa;
+                --font-heading: "Cormorant Garamond", serif;
+                --font-body: "Montserrat", sans-serif;
+                --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+                --max-width: 1400px;
+                --radius-md: 12px;
+                --radius-full: 50px;
+                --shadow-xl: 0 25px 70px rgba(0, 0, 0, 0.25);
+            }
+
+            /* Reset */
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+
+            body {
+                font-family: "Montserrat", -apple-system, BlinkMacSystemFont,
+                    "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+                color: var(--text-dark);
+                line-height: 1.6;
+                background: var(--bg-light);
+            }
+
+            /* Header - kritické pro první zobrazení */
+            .header {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                background: rgba(255, 255, 255, 0.7);
+                backdrop-filter: blur(10px);
+                z-index: 1000;
+                box-shadow: 0 2px 20px rgba(0, 0, 0, 0.05);
+            }
+
+            .nav-container {
+                max-width: var(--max-width);
+                margin: 0 auto;
+                padding: 1.2rem 2rem;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+
+            .logo-container {
+                display: flex;
+                align-items: center;
+                gap: 1rem;
+            }
+
+            .logo {
+                width: 60px;
+                height: 60px;
+            }
+
+            .brand-text h1 {
+                font-size: 1.8rem;
+                color: var(--text-dark);
+                margin: 0;
+                font-weight: 600;
+                line-height: 1.2;
+            }
+
+            .brand-text p {
+                font-size: 0.9rem;
+                color: var(--text-light);
+                margin: 0;
+            }
+
+            .nav-links {
+                display: flex;
+                list-style: none;
+                gap: 2.5rem;
+                align-items: center;
+            }
+
+            .nav-links a {
+                color: var(--text-dark);
+                text-decoration: none;
+                font-weight: 500;
+                font-size: 0.95rem;
+            }
+
+            .mobile-menu-btn {
+                display: none;
+                background: none;
+                border: none;
+                cursor: pointer;
+                padding: 0.5rem;
+            }
+
+            .mobile-menu-btn span {
+                display: block;
+                width: 28px;
+                height: 3px;
+                background: var(--text-dark);
+                margin: 5px 0;
+                border-radius: 3px;
+            }
+
+            /* Hero - kritické pro první zobrazení */
+            .hero-container {
+                background: var(--bg-subtle) url(images/hero-background.jpg)
+                    no-repeat center;
+                background-size: cover;
+            }
+
+            .hero {
+                min-height: 85vh;
+                height: 100vh;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                position: relative;
+                overflow: hidden;
+            }
+
+            .hero-content {
+                background: rgba(255, 255, 255, 0.5);
+                max-width: 800px;
+                margin: 0 auto;
+                padding: 3.5rem 3rem;
+                border-radius: var(--radius-md);
+                box-shadow: var(--shadow-xl);
+                text-align: center;
+                position: relative;
+                z-index: 1;
+                backdrop-filter: blur(10px);
+                /* Animace při načtení - nespůsobuje CLS */
+                animation: heroSlideUp 0.8s ease-out forwards;
+            }
+
+            @keyframes heroSlideUp {
+                from {
+                    opacity: 0;
+                    transform: translateY(50px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+
+            .hero-content:hover {
+                background: rgba(255, 255, 255, 0.7);
+                transform: translateY(-5px);
+                box-shadow: 0 30px 80px rgba(0, 0, 0, 0.3);
+                transition: all 0.4s ease;
+            }
+
+            .hero h2 {
+                margin-bottom: 1.5rem;
+                color: var(--primary-color);
+                font-size: 3.5rem;
+                font-weight: 600;
+                line-height: 1.2;
+            }
+
+            .hero-description {
+                font-size: 1.1rem;
+                color: var(--text-light);
+                max-width: 700px;
+                margin: 0 auto 3rem;
+                line-height: 1.8;
+            }
+
+            .cta-buttons {
+                display: flex;
+                gap: 1.5rem;
+                justify-content: center;
+            }
+
+            .btn {
+                padding: 1rem 2.5rem;
+                border-radius: var(--radius-full);
+                text-decoration: none;
+                font-weight: 600;
+                font-size: 1rem;
+                display: inline-block;
+            }
+
+            .btn-primary {
+                background: var(--accent-color);
+                color: white;
+                box-shadow: 0 4px 20px rgba(230, 126, 34, 0.3);
+            }
+
+            .btn-secondary {
+                background: transparent;
+                color: var(--primary-color);
+                border: 2px solid var(--primary-color);
+            }
+
+            /* Základní responsive */
+            @media (max-width: 968px) {
+                .hero h2 {
+                    font-size: 3rem;
+                }
+                .nav-links {
+                    position: fixed;
+                    right: -100%;
+                    top: 0;
+                    min-width: 150px;
+                    width: 30%;
+                    height: 100vh;
+                    background: var(--bg-light);
+                    flex-direction: column;
+                    justify-content: center;
+                }
+                .mobile-menu-btn {
+                    display: block;
+                }
+            }
+
+            /* Fade-in animace pro Intersection Observer */
+            .fade-in {
+                opacity: 0;
+                transform: translateY(30px);
+                transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+            }
+
+            .fade-in.visible {
+                opacity: 1;
+                transform: translateY(0);
+            }
+
+            @media (max-width: 640px) {
+                .hero h2 {
+                    font-size: 2.2rem;
+                }
+                .hero-content {
+                    padding: 2rem 1.5rem;
+                }
+                .logo {
+                    width: 50px;
+                    height: 50px;
+                }
+                .brand-text h1 {
+                    font-size: 1.4rem;
+                }
+            }
+        </style>
+
+        <!-- Preconnect pro Google Fonts - DŮLEŽITÉ pro rychlost -->
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+        <!-- Google Fonts s display=swap pro prevenci CLS -->
         <link
             href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600;700&family=Montserrat:wght@300;400;500;600&display=swap"
             rel="stylesheet"
         />
 
-        <link rel="stylesheet" href="main.css" />
+        <!-- Hlavní CSS - načte se asynchronně -->
+        <link
+            rel="preload"
+            href="main.css"
+            as="style"
+            onload="this.onload=null;this.rel='stylesheet'"
+        />
+        <noscript><link rel="stylesheet" href="main.css" /></noscript>
+
+        <!-- Fallback pro staré prohlížeče -->
+        <script>
+            /*! loadCSS. [c]2017 Filament Group, Inc. MIT License */
+            !(function (e) {
+                "use strict";
+                var t = function (t, n, r, o) {
+                    var i,
+                        a = e.document,
+                        d = a.createElement("link");
+                    if (n) i = n;
+                    else {
+                        var l = (a.body || a.getElementsByTagName("head")[0])
+                            .childNodes;
+                        i = l[l.length - 1];
+                    }
+                    var s = a.styleSheets;
+                    if (o)
+                        for (var u = 0; u < s.length; u++)
+                            s[u].href &&
+                                s[u].href.indexOf(t) > -1 &&
+                                ((d.rel = "stylesheet"), (d.href = t));
+                    (d.rel = "stylesheet"),
+                        (d.href = t),
+                        (d.media = "only x"),
+                        (function e(t) {
+                            if (a.body) return t();
+                            setTimeout(function () {
+                                e(t);
+                            });
+                        })(function () {
+                            i.parentNode.insertBefore(d, n ? i : i.nextSibling);
+                        });
+                    var f = function (e) {
+                        for (var t = d.href, n = s.length; n--; )
+                            if (s[n].href === t) return e();
+                        setTimeout(function () {
+                            f(e);
+                        });
+                    };
+                    function c() {
+                        d.addEventListener && d.removeEventListener("load", c),
+                            (d.media = r || "all");
+                    }
+                    return (
+                        d.addEventListener && d.addEventListener("load", c),
+                        (d.onloadcssdefined = f)(c),
+                        d
+                    );
+                };
+                "undefined" != typeof exports
+                    ? (exports.loadCSS = t)
+                    : (e.loadCSS = t);
+            })("undefined" != typeof global ? global : this);
+        </script>
     </head>
     <body>
         <!-- Hero Section -->
@@ -57,6 +376,8 @@
                             src="images/logo.png"
                             alt="MH Photography Logo"
                             class="logo"
+                            width="60"
+                            height="60"
                         />
                     </a>
                     <div class="brand-text">
@@ -119,76 +440,140 @@
             </div>
             <div class="gallery-categories">
                 <a href="galerie/svatby.html" class="gallery-category">
-                    <img
-                        src="images/thumbnail-svatby-800.jpg"
-                        srcset="
-                            images/thumbnail-svatby-400.jpg 400w,
-                            images/thumbnail-svatby-600.jpg 600w,
-                            images/thumbnail-svatby-800.jpg 800w
-                        "
-                        sizes="(max-width: 640px) 400px, 
-                            (max-width: 1024px) 600px, 
-                            800px"
-                        alt="Svatební fotografie"
-                        class="category-image"
-                    />
+                    <picture>
+                        <source
+                            srcset="
+                                images/thumbnail-svatby-400.webp 400w,
+                                images/thumbnail-svatby-600.webp 600w,
+                                images/thumbnail-svatby-800.webp 800w
+                            "
+                            sizes="(max-width: 640px) 400px, 
+                                (max-width: 1024px) 600px, 
+                                800px"
+                            type="image/webp"
+                        />
+                        <img
+                            src="images/thumbnail-svatby-800.jpg"
+                            srcset="
+                                images/thumbnail-svatby-400.jpg 400w,
+                                images/thumbnail-svatby-600.jpg 600w,
+                                images/thumbnail-svatby-800.jpg 800w
+                            "
+                            sizes="(max-width: 640px) 400px, 
+                                (max-width: 1024px) 600px, 
+                                800px"
+                            alt="Svatební fotografie"
+                            class="category-image"
+                            loading="lazy"
+                            width="710"
+                            height="533"
+                        />
+                    </picture>
                     <div class="category-title">
                         <h3>Svatby</h3>
                         <p class="category-count">Váš nejkrásnější den</p>
                     </div>
                 </a>
                 <a href="galerie/deti.html" class="gallery-category">
-                    <img
-                        src="images/thumbnail-deti-800.jpg"
-                        srcset="
-                            images/thumbnail-deti-400.jpg 400w,
-                            images/thumbnail-deti-600.jpg 600w,
-                            images/thumbnail-deti-800.jpg 800w
-                        "
-                        sizes="(max-width: 640px) 400px, 
-                            (max-width: 1024px) 600px, 
-                            800px"
-                        alt="Dětské fotografie"
-                        class="category-image"
-                    />
+                    <picture>
+                        <source
+                            srcset="
+                                images/thumbnail-deti-400.webp 400w,
+                                images/thumbnail-deti-600.webp 600w,
+                                images/thumbnail-deti-800.webp 800w
+                            "
+                            sizes="(max-width: 640px) 400px, 
+                                (max-width: 1024px) 600px, 
+                                800px"
+                            type="image/webp"
+                        />
+                        <img
+                            src="images/thumbnail-deti-800.jpg"
+                            srcset="
+                                images/thumbnail-deti-400.jpg 400w,
+                                images/thumbnail-deti-600.jpg 600w,
+                                images/thumbnail-deti-800.jpg 800w
+                            "
+                            sizes="(max-width: 640px) 400px, 
+                                (max-width: 1024px) 600px, 
+                                800px"
+                            alt="Dětské fotografie"
+                            class="category-image"
+                            loading="lazy"
+                            width="710"
+                            height="533"
+                        />
+                    </picture>
                     <div class="category-title">
                         <h3>Děti</h3>
                         <p class="category-count">Neopakovatelné okamžiky</p>
                     </div>
                 </a>
                 <a href="galerie/portrety.html" class="gallery-category">
-                    <img
-                        src="images/thumbnail-portrety-800.jpg"
-                        srcset="
-                            images/thumbnail-portrety-400.jpg 400w,
-                            images/thumbnail-portrety-600.jpg 600w,
-                            images/thumbnail-portrety-800.jpg 800w
-                        "
-                        sizes="(max-width: 640px) 400px, 
-                            (max-width: 1024px) 600px, 
-                            800px"
-                        alt="Portréty"
-                        class="category-image"
-                    />
+                    <picture>
+                        <source
+                            srcset="
+                                images/thumbnail-portrety-400.webp 400w,
+                                images/thumbnail-portrety-600.webp 600w,
+                                images/thumbnail-portrety-800.webp 800w
+                            "
+                            sizes="(max-width: 640px) 400px, 
+                                (max-width: 1024px) 600px, 
+                                800px"
+                            type="image/webp"
+                        />
+                        <img
+                            src="images/thumbnail-portrety-800.jpg"
+                            srcset="
+                                images/thumbnail-portrety-400.jpg 400w,
+                                images/thumbnail-portrety-600.jpg 600w,
+                                images/thumbnail-portrety-800.jpg 800w
+                            "
+                            sizes="(max-width: 640px) 400px, 
+                                (max-width: 1024px) 600px, 
+                                800px"
+                            alt="Portréty"
+                            class="category-image"
+                            loading="lazy"
+                            width="710"
+                            height="533"
+                        />
+                    </picture>
                     <div class="category-title">
                         <h3>Portréty</h3>
                         <p class="category-count">Osobitý styl</p>
                     </div>
                 </a>
                 <a href="galerie/pary.html" class="gallery-category">
-                    <img
-                        src="images/thumbnail-pary-800.jpg"
-                        srcset="
-                            images/thumbnail-pary-400.jpg 400w,
-                            images/thumbnail-pary-600.jpg 600w,
-                            images/thumbnail-pary-800.jpg 800w
-                        "
-                        sizes="(max-width: 640px) 400px, 
-                            (max-width: 1024px) 600px, 
-                            800px"
-                        alt="Párové fotografie"
-                        class="category-image"
-                    />
+                    <picture>
+                        <source
+                            srcset="
+                                images/thumbnail-pary-400.webp 400w,
+                                images/thumbnail-pary-600.webp 600w,
+                                images/thumbnail-pary-800.webp 800w
+                            "
+                            sizes="(max-width: 640px) 400px, 
+                                (max-width: 1024px) 600px, 
+                                800px"
+                            type="image/webp"
+                        />
+                        <img
+                            src="images/thumbnail-pary-800.jpg"
+                            srcset="
+                                images/thumbnail-pary-400.jpg 400w,
+                                images/thumbnail-pary-600.jpg 600w,
+                                images/thumbnail-pary-800.jpg 800w
+                            "
+                            sizes="(max-width: 640px) 400px, 
+                                (max-width: 1024px) 600px, 
+                                800px"
+                            alt="Párové fotografie"
+                            class="category-image"
+                            loading="lazy"
+                            width="710"
+                            height="533"
+                        />
+                    </picture>
                     <div class="category-title">
                         <h3>Páry</h3>
                         <p class="category-count">Váš společný příběh</p>
@@ -246,9 +631,9 @@
                             >
                         </p>
                         <p>
-                            <a href="mailto:marekhadal@seznam.cz"
-                                >marekhadal@seznam.cz</a
-                            >
+                            <a href="mailto: marekhadal@seznam.cz">
+                                marekhadal@seznam.cz
+                            </a>
                         </p>
                     </div>
                 </div>
@@ -264,6 +649,8 @@
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
                             viewBox="0 0 24 24"
+                            width="28"
+                            height="28"
                         >
                             <path
                                 d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"
@@ -281,6 +668,8 @@
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
                             viewBox="0 0 1869.11 1534"
+                            width="28"
+                            height="28"
                         >
                             <path
                                 d="M1011.88,575.63l-185.34,185.34,219.91,219.91,185.34-185.34-219.91-219.91Z"
@@ -313,10 +702,51 @@
 
         <!-- Scroll to Top Button -->
         <button class="scroll-top" aria-label="Nahoru">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                width="24"
+                height="24"
+            >
                 <path d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z" />
             </svg>
         </button>
-        <script src="script.js"></script>
+
+        <!-- Inline skript pro animace - spustí se OKAMŽITĚ -->
+        <script>
+            // Intersection Observer pro fade-in animace
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: "0px 0px -100px 0px",
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add("visible");
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            // Přidat fade-in k sekcím
+            document.querySelectorAll(".section").forEach((section) => {
+                section.classList.add("fade-in");
+                observer.observe(section);
+            });
+
+            // Přidat fade-in ke galerii se staggered delay
+            document
+                .querySelectorAll(".gallery-category")
+                .forEach((item, index) => {
+                    item.classList.add("fade-in");
+                    item.style.transitionDelay = `${index * 0.15}s`;
+                    observer.observe(item);
+                });
+        </script>
+
+        <!-- JavaScript - defer pro nezablokování -->ipt - defer pro
+        nezablokování -->
+        <script src="script.js" defer></script>
     </body>
 </html>

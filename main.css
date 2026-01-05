@@ -174,9 +174,26 @@ h2 {
 /* ===================================
    Main Content Styles
    =================================== */
+/* ===================================
+   Main Content Styles
+   =================================== */
 .hero-container {
-    background: #b1b1b0 url(images/hero-background.jpg) no-repeat center;
+    background: var(--bg-subtle) no-repeat center;
     background-size: cover;
+}
+
+/* WebP background pro moderní prohlížeče */
+@supports (background-image: url(test.webp)) {
+    .hero-container {
+        background-image: url(images/hero-background.webp);
+    }
+}
+
+/* Fallback JPG pro staré prohlížeče */
+@supports not (background-image: url(test.webp)) {
+    .hero-container {
+        background-image: url(images/hero-background.jpg);
+    }
 }
 
 .hero {
@@ -196,18 +213,30 @@ h2 {
     padding: 3.5rem 3rem;
     border-radius: var(--radius-md);
     box-shadow: var(--shadow-xl);
-    transition: var(--transition);
     text-align: center;
     position: relative;
     z-index: 1;
     backdrop-filter: blur(10px);
-    transform: translateY(50px);
+    /* CSS animace místo statického transform - prevence CLS */
+    animation: heroSlideUp 0.8s ease-out forwards;
+}
+
+@keyframes heroSlideUp {
+    from {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .hero-content:hover {
     background: rgba(255, 255, 255, 0.7);
-    transform: translateY(45px);
-    box-shadow: 0 25px 70px rgba(0, 0, 0, 0.25);
+    transform: translateY(-5px);
+    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.3);
+    transition: all 0.4s ease;
 }
 
 .hero h2 {
@@ -277,14 +306,6 @@ h2 {
     padding: var(--section-padding);
     max-width: var(--max-width);
     margin: 0 auto;
-    opacity: 0;
-    transform: translateY(30px);
-    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-}
-
-.section.visible {
-    opacity: 1;
-    transform: translateY(0);
 }
 
 .section:nth-child(even) {
@@ -711,5 +732,38 @@ h2 {
 
     .category-title h3 {
         font-size: 1.8rem;
+    }
+}
+
+/* ===================================
+   Performance Optimizations
+   =================================== */
+/* Fade-in animace pro Intersection Observer */
+.fade-in {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Will-change hint pro lepší GPU acceleration */
+.hero-content,
+.gallery-category,
+.btn {
+    will-change: transform;
+}
+
+/* Respektování preferencí uživatele pro redukované animace */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
     }
 }

@@ -51,18 +51,6 @@ body {
         box-shadow 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.pricing-card.fade-in {
-    opacity: 0;
-    transform: translateY(30px);
-}
-
-.pricing-card.visible {
-    opacity: 1;
-    transform: translateY(0);
-    transition: opacity 0.8s ease-out, transform 0.8s ease-out,
-        box-shadow 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
 .pricing-card:hover {
     transform: translateY(-10px);
     box-shadow: var(--shadow-lg);
@@ -191,18 +179,6 @@ body {
     border-radius: var(--radius-md);
     box-shadow: var(--shadow-sm);
     transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1),
-        box-shadow 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.info-item.fade-in {
-    opacity: 0;
-    transform: translateY(30px);
-}
-
-.info-item.visible {
-    opacity: 1;
-    transform: translateY(0);
-    transition: opacity 0.8s ease-out, transform 0.8s ease-out,
         box-shadow 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
