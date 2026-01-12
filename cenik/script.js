@@ -17,7 +17,7 @@ if (mobileMenuBtn && navLinks) {
     });
 }
 
-// Header scroll effect - optimalizovaný s requestAnimationFrame
+// Header scroll effect
 const header = document.querySelector(".header");
 let headerTicking = false;
 
@@ -37,7 +37,7 @@ window.addEventListener("scroll", () => {
     }
 });
 
-// Scroll to Top Button - optimalizovaný
+// Scroll to Top Button
 const scrollTopBtn = document.querySelector(".scroll-top");
 let scrollTicking = false;
 
@@ -66,7 +66,7 @@ if (scrollTopBtn) {
     });
 }
 
-// Smooth scroll for anchor links - OPTIMALIZOVÁNO bez getBoundingClientRect
+// Smooth scroll for anchor links
 document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
     anchor.addEventListener("click", function (e) {
         e.preventDefault();
@@ -76,19 +76,17 @@ document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
 
         const target = document.querySelector(targetId);
         if (target) {
-            // Použití scrollIntoView místo getBoundingClientRect - žádný reflow!
             target.scrollIntoView({
                 behavior: "smooth",
                 block: "start",
             });
 
-            // Offset pro fixed header - wait pro smooth scroll
             setTimeout(() => {
                 const scrolledY = window.scrollY;
                 if (scrolledY > 0) {
                     window.scrollTo({
                         top: scrolledY - 100,
-                        behavior: "auto", // instant, už jsme blízko
+                        behavior: "auto",
                     });
                 }
             }, 100);
@@ -96,7 +94,7 @@ document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
     });
 });
 
-// Intersection Observer for fade-in animations - PŮVODNÍ VERZE S INLINE STYLY
+// Intersection Observer for fade-in animations
 const observerOptions = {
     threshold: 0.1,
     rootMargin: "0px 0px -100px 0px",
@@ -109,7 +107,6 @@ const observer = new IntersectionObserver((entries) => {
             entry.target.style.opacity = "1";
             entry.target.style.transform = "translateY(0)";
 
-            // Po animaci (0.8s) ODSTRANIT inline styly aby fungovalo CSS hover
             setTimeout(() => {
                 entry.target.style.opacity = "";
                 entry.target.style.transform = "";
@@ -119,7 +116,7 @@ const observer = new IntersectionObserver((entries) => {
     });
 }, observerOptions);
 
-// Apply fade-in to pricing cards - INLINE STYLY
+// Apply fade-in to pricing cards
 document.querySelectorAll(".pricing-card").forEach((card, index) => {
     card.style.opacity = "0";
     card.style.transform = "translateY(30px)";
@@ -129,7 +126,7 @@ document.querySelectorAll(".pricing-card").forEach((card, index) => {
     observer.observe(card);
 });
 
-// Apply fade-in to info items - INLINE STYLY
+// Apply fade-in to info items
 document.querySelectorAll(".info-item").forEach((item, index) => {
     item.style.opacity = "0";
     item.style.transform = "translateY(30px)";

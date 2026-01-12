@@ -17,7 +17,7 @@ if (mobileMenuBtn && navLinks) {
     });
 }
 
-// Header scroll effect - optimalizovaný s requestAnimationFrame
+// Header scroll effect
 const header = document.querySelector(".header");
 let ticking = false;
 
@@ -37,7 +37,7 @@ window.addEventListener("scroll", () => {
     }
 });
 
-// Scroll to Top Button - optimalizovaný
+// Scroll to Top Button
 const scrollTopBtn = document.querySelector(".scroll-top");
 let scrollTicking = false;
 
@@ -148,7 +148,7 @@ if (lightbox && galleryItems.length > 0) {
     });
 }
 
-// Intersection Observer pro fade-in animace - inline verze pro okamžité spuštění
+// Intersection Observer for fade-in animation
 const observerOptions = {
     threshold: 0.1,
     rootMargin: "0px 0px -100px 0px",
@@ -166,7 +166,7 @@ const observer = new IntersectionObserver((entries) => {
 // Apply fade-in to gallery items se staggered delay
 galleryItems.forEach((item, index) => {
     item.classList.add("fade-in");
-    item.style.transitionDelay = `${index * 0.05}s`; // 0.05s pro větší galerie
+    item.style.transitionDelay = `${index * 0.05}s`;
     observer.observe(item);
 });
 

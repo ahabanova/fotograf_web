@@ -14,9 +14,7 @@
         <title>Marek Hádal – Fotograf | MH Photography</title>
         <link rel="icon" href="images/favicon.ico" />
 
-        <!-- CRITICAL CSS - inline pro okamžité vykreslení -->
         <style>
-            /* CSS Variables */
             :root {
                 --primary-color: #0f4b80;
                 --accent-color: #e67e22;
@@ -33,7 +31,6 @@
                 --shadow-xl: 0 25px 70px rgba(0, 0, 0, 0.25);
             }
 
-            /* Reset */
             * {
                 margin: 0;
                 padding: 0;
@@ -48,7 +45,6 @@
                 background: var(--bg-light);
             }
 
-            /* Header - kritické pro první zobrazení */
             .header {
                 position: fixed;
                 top: 0;
@@ -125,9 +121,8 @@
                 border-radius: 3px;
             }
 
-            /* Hero - kritické pro první zobrazení */
             .hero-container {
-                background: var(--bg-subtle) url(images/hero-background.jpg)
+                background: var(--bg-subtle) url(images/hero-background.webp)
                     no-repeat center;
                 background-size: cover;
             }
@@ -218,7 +213,6 @@
                 border: 2px solid var(--primary-color);
             }
 
-            /* Základní responsive */
             @media (max-width: 968px) {
                 .hero h2 {
                     font-size: 3rem;
@@ -239,7 +233,6 @@
                 }
             }
 
-            /* Fade-in animace pro Intersection Observer */
             .fade-in {
                 opacity: 0;
                 transform: translateY(30px);
@@ -268,17 +261,12 @@
             }
         </style>
 
-        <!-- Preconnect pro Google Fonts - DŮLEŽITÉ pro rychlost -->
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-
-        <!-- Google Fonts s display=swap pro prevenci CLS -->
         <link
             href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600;700&family=Montserrat:wght@300;400;500;600&display=swap"
             rel="stylesheet"
         />
-
-        <!-- Hlavní CSS - načte se asynchronně -->
         <link
             rel="preload"
             href="main.css"
@@ -286,64 +274,8 @@
             onload="this.onload=null;this.rel='stylesheet'"
         />
         <noscript><link rel="stylesheet" href="main.css" /></noscript>
-
-        <!-- Fallback pro staré prohlížeče -->
-        <script>
-            /*! loadCSS. [c]2017 Filament Group, Inc. MIT License */
-            !(function (e) {
-                "use strict";
-                var t = function (t, n, r, o) {
-                    var i,
-                        a = e.document,
-                        d = a.createElement("link");
-                    if (n) i = n;
-                    else {
-                        var l = (a.body || a.getElementsByTagName("head")[0])
-                            .childNodes;
-                        i = l[l.length - 1];
-                    }
-                    var s = a.styleSheets;
-                    if (o)
-                        for (var u = 0; u < s.length; u++)
-                            s[u].href &&
-                                s[u].href.indexOf(t) > -1 &&
-                                ((d.rel = "stylesheet"), (d.href = t));
-                    (d.rel = "stylesheet"),
-                        (d.href = t),
-                        (d.media = "only x"),
-                        (function e(t) {
-                            if (a.body) return t();
-                            setTimeout(function () {
-                                e(t);
-                            });
-                        })(function () {
-                            i.parentNode.insertBefore(d, n ? i : i.nextSibling);
-                        });
-                    var f = function (e) {
-                        for (var t = d.href, n = s.length; n--; )
-                            if (s[n].href === t) return e();
-                        setTimeout(function () {
-                            f(e);
-                        });
-                    };
-                    function c() {
-                        d.addEventListener && d.removeEventListener("load", c),
-                            (d.media = r || "all");
-                    }
-                    return (
-                        d.addEventListener && d.addEventListener("load", c),
-                        (d.onloadcssdefined = f)(c),
-                        d
-                    );
-                };
-                "undefined" != typeof exports
-                    ? (exports.loadCSS = t)
-                    : (e.loadCSS = t);
-            })("undefined" != typeof global ? global : this);
-        </script>
     </head>
     <body>
-        <!-- Hero Section -->
         <div class="hero-container">
             <section class="hero">
                 <div class="hero-content">
@@ -367,7 +299,6 @@
             </section>
         </div>
 
-        <!-- Header -->
         <header class="header">
             <nav class="nav-container">
                 <div class="logo-container">
@@ -399,7 +330,6 @@
             </nav>
         </header>
 
-        <!-- About Section -->
         <section class="section" id="o-mne">
             <div class="section-header">
                 <h2>O mně</h2>
@@ -432,7 +362,6 @@
             </div>
         </section>
 
-        <!-- Gallery Section -->
         <section class="section" id="fotogalerie">
             <div class="section-header">
                 <h2>Fotogalerie</h2>
@@ -582,7 +511,6 @@
             </div>
         </section>
 
-        <!-- Pricing Section -->
         <section class="section" id="cenik">
             <div class="section-header">
                 <h2>Ceník</h2>
@@ -613,7 +541,6 @@
             </div>
         </section>
 
-        <!-- Contact Section -->
         <section class="section contact-section" id="kontakt">
             <div class="section-header">
                 <h2>Kontakt</h2>
@@ -692,7 +619,6 @@
             </div>
         </section>
 
-        <!-- Footer -->
         <footer class="footer">
             <p>
                 &copy; 2025 Marek Hádal &ndash; MH Photography. Všechna práva
@@ -700,7 +626,6 @@
             </p>
         </footer>
 
-        <!-- Scroll to Top Button -->
         <button class="scroll-top" aria-label="Nahoru">
             <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -712,9 +637,7 @@
             </svg>
         </button>
 
-        <!-- Inline skript pro animace - spustí se OKAMŽITĚ -->
         <script>
-            // Intersection Observer pro fade-in animace
             const observerOptions = {
                 threshold: 0.1,
                 rootMargin: "0px 0px -100px 0px",
@@ -729,13 +652,11 @@
                 });
             }, observerOptions);
 
-            // Přidat fade-in k sekcím
             document.querySelectorAll(".section").forEach((section) => {
                 section.classList.add("fade-in");
                 observer.observe(section);
             });
 
-            // Přidat fade-in ke galerii se staggered delay
             document
                 .querySelectorAll(".gallery-category")
                 .forEach((item, index) => {
@@ -745,7 +666,6 @@
                 });
         </script>
 
-        <!-- JavaScript - defer pro nezablokování -->
         <script src="script.js" defer></script>
     </body>
 </html>

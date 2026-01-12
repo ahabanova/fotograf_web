@@ -17,7 +17,7 @@ if (mobileMenuBtn && navLinks) {
     });
 }
 
-// Header scroll effect - použití requestAnimationFrame pro lepší výkon
+// Header scroll effect
 const header = document.querySelector(".header");
 let ticking = false;
 
@@ -37,7 +37,7 @@ window.addEventListener("scroll", () => {
     }
 });
 
-// Scroll to Top Button - optimalizace
+// Scroll to Top Button
 const scrollTopBtn = document.querySelector(".scroll-top");
 let scrollTicking = false;
 
@@ -84,6 +84,3 @@ document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
         }
     });
 });
-
-// Poznámka: Intersection Observer pro animace je v inline skriptu v HTML
-// pro okamžité spuštění bez čekání na defer
