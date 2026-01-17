@@ -147,6 +147,15 @@ h2 {
     color: var(--accent-color);
 }
 
+.nav-links a.active {
+    color: var(--accent-color);
+    font-weight: 600;
+}
+
+.nav-links a.active::after {
+    width: 100%;
+}
+
 .mobile-menu-btn {
     display: none;
     background: none;
@@ -714,6 +723,18 @@ h2 {
 
     .category-title h3 {
         font-size: 1.8rem;
+    }
+
+    .category-title {
+        opacity: 1;
+    }
+
+    .gallery-category::before {
+        background: linear-gradient(
+            180deg,
+            transparent 0%,
+            rgba(0, 0, 0, 0.5) 100%
+        );
     }
 
     .scroll-top.visible {
