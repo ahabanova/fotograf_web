@@ -175,20 +175,8 @@ h2 {
 }
 
 .hero-container {
-    background: var(--bg-subtle) no-repeat center;
+    background: var(--bg-subtle) url(images/hero-jpg-q85.jpg) no-repeat center;
     background-size: cover;
-}
-
-@supports (background-image: url(test.webp)) {
-    .hero-container {
-        background-image: url(images/hero-background.webp);
-    }
-}
-
-@supports not (background-image: url(test.webp)) {
-    .hero-container {
-        background-image: url(images/hero-background.jpg);
-    }
 }
 
 .hero {
@@ -745,7 +733,9 @@ h2 {
 .fade-in {
     opacity: 0;
     transform: translateY(30px);
-    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    transition:
+        opacity 0.8s ease-out,
+        transform 0.8s ease-out;
 }
 
 .fade-in.visible {
