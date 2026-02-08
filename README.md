@@ -28,12 +28,6 @@ A  portfolio website created for photographer Marek Hádal (MH Photography). The
 - CSS3
 - JavaScript
 
-## 👤 Client Information
-
-**MH Photography - Marek Hádal**
-- Website: [mhphotography.cz](https://mhphotography.cz/)
-- Email: marekhadal@seznam.cz
-
 ## 📸 Services Offered
 
 The website promotes photography services including:
