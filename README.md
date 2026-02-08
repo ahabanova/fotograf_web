@@ -47,5 +47,4 @@ This project was developed as a commissioned work for MH Photography.
 
 ---
 
-**Developer:** Andrea Habáňová
-**Year:** 2025
+© Andrea Habáňová 2025
